@@ -13,7 +13,6 @@ int main()
         printf("0 - Sair \n");
         printf("Escolha: \n");
         scanf("%d", &opcao);
-            getchar();
 
         switch (opcao)
         {
