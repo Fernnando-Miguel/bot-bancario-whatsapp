@@ -6,31 +6,39 @@ int main()
 {
     int opcao = 1;
 
-        while (opcao != 0) {
+    while (opcao != 0)
     {
-        printf("\n===SISTEMA DE GASTOS===\n");
-            printf("1 - Adicionar Gasto \n");
-        printf("0 - Sair \n");
-        printf("Escolha: \n");
-        scanf("%d", &opcao);
-
-        switch (opcao)
         {
+            printf("\n===SISTEMA DE GASTOS===\n");
+            printf("1 - Adicionar Gasto \n");
+            printf("2 - Listar gastos");
+            printf("0 - Sair \n");
+            printf("Escolha: \n");
+            scanf("%d", &opcao);
 
-        case 1:
+            switch (opcao)
+            {
 
-            adicionar_gasto();
+            case 1:
 
-            break;
+                adicionar_gasto();
 
-        case 0:
-            printf("Saindo...\n");
+                break;
 
-            break;
+            case 2:
 
-        default:
-            break;
+                mostrar_total();
+
+                break;
+
+            case 0:
+                printf("Saindo...\n");
+
+                break;
+
+            default:
+                break;
+            }
         }
+        return 0;
     }
-    return 0;
-}
