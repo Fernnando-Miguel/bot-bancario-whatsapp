@@ -69,3 +69,23 @@ void mostrar_total()
 {
     printf("Total dos gastos: R$: %2.f\n", total_gasto());
 }
+
+void salvar_gastos()
+{
+    FILE *file = fopen("gastos.txt", "w");
+
+    if (file == NULL)
+    {
+        printf("Erro ao abrir arquivo! \n");
+        return;
+    }
+    for( int i = 0; i < total_gastos; i++){
+        fprintf(file, " %s| %s| %.2f\n",
+        
+            gastos[i].gasto,
+            gastos[i].horario,
+            gastos[i].valor);
+    }
+    fclose(file);
+     printf("Gastos salvos com sucesso!\n");
+}
