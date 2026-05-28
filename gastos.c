@@ -79,13 +79,27 @@ void salvar_gastos()
         printf("Erro ao abrir arquivo! \n");
         return;
     }
-    for( int i = 0; i < total_gastos; i++){
+    for (int i = 0; i < total_gastos; i++)
+    {
         fprintf(file, " %s| %s| %.2f\n",
-        
-            gastos[i].gasto,
-            gastos[i].horario,
-            gastos[i].valor);
+
+                gastos[i].gasto,
+                gastos[i].horario,
+                gastos[i].valor);
     }
     fclose(file);
-     printf("Gastos salvos com sucesso!\n");
+    printf("Gastos salvos com sucesso!\n");
+}
+void carregar_gastos()
+{
+    FILE *file = fopne("Gastos.txt", "r");
+    if (file == NULL)
+    {
+        return;
+    }
+
+       while (fscanf(file, " %89[^|]|%29[^|]|%f\n",
+                  gastos[total_gastos].gasto,
+                  gastos[total_gastos].horario,
+                  &gastos[total_gastos].valor) == 3)
 }
