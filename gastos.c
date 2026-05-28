@@ -36,6 +36,7 @@ void adicionar_gasto()
     printf("Digite seu gasto: \n");
     getchar();
     fgets(gastos[total_gastos].gasto, 90, stdin);
+    gastos[total_gastos].gasto[strcspn(gastos[total_gastos].gasto, "\n")] = '\0';
     strcpy(gastos[total_gastos].horario, buffer);
     printf("Digite o valor do seu gasto: \n");
     scanf("%f", &gastos[total_gastos].valor);
@@ -52,7 +53,7 @@ void listar_gasto()
     }
     for (int i = 0; i < total_gastos; i++)
     {
-        printf("%d - %s | %s\n",
+        printf("%d - %s | %s | R$: %.2f\n",
                i + 1,
                gastos[i].gasto,
                gastos[i].horario,
@@ -102,7 +103,8 @@ void carregar_gastos()
         return;
     }
 
-    while (fscanf(file, " %89[^|]|%29[^|]|%f\n",
+    while (total_gastos < MAX_GASTOS &&
+        fscanf(file, " %89[^|]|%29[^|]|%f\n",
                   gastos[total_gastos].gasto,
                   gastos[total_gastos].horario,
                   &gastos[total_gastos].valor) == 3)
