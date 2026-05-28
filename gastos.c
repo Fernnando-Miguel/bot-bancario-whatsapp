@@ -52,14 +52,18 @@ void listar_gasto()
     }
     for (int i = 0; i < total_gastos; i++)
     {
-        printf("%d - %s | %s\n", i + 1, gastos[i].gasto, gastos[i].horario);
+        printf("%d - %s | %s\n",
+               i + 1,
+               gastos[i].gasto,
+               gastos[i].horario,
+               gastos[i].valor);
     }
 }
 
 float total_gasto()
 {
     float soma = 0;
-    for (int i = 0; i < total_gasto; i++)
+    for (int i = 0; i < total_gastos; i++)
     {
         soma += gastos[i].valor;
     }
@@ -92,14 +96,18 @@ void salvar_gastos()
 }
 void carregar_gastos()
 {
-    FILE *file = fopne("Gastos.txt", "r");
+    FILE *file = fopen("gastos.txt", "r");
     if (file == NULL)
     {
         return;
     }
 
-       while (fscanf(file, " %89[^|]|%29[^|]|%f\n",
+    while (fscanf(file, " %89[^|]|%29[^|]|%f\n",
                   gastos[total_gastos].gasto,
                   gastos[total_gastos].horario,
                   &gastos[total_gastos].valor) == 3)
+    {
+        total_gastos++;
+    }
+    fclose(file);
 }
